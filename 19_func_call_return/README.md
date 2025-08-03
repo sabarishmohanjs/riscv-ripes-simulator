@@ -19,7 +19,7 @@ int diffofsums(int f, int g, int h, int i) {
     result = (f + g) - (h + i);
     return result;
 }
-
+```
 
 -----------------------
 
