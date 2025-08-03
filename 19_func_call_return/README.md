@@ -2,17 +2,19 @@
 
 ### High-Level Language (HLL) Code
 
-int main(){
-int y;
-...
-y = diffofsums(2, 3, 4, 5);
-. . .
+int main() {
+    int y;
+    // some code here...
+    y = diffofsums(2, 3, 4, 5);
+    // some more code...
 }
-int diffofsums(int f, int g, int h, int i){
-int result;
-result = (f + g) − (h + i);
-return result;
+
+int diffofsums(int f, int g, int h, int i) {
+    int result;
+    result = (f + g) - (h + i);
+    return result;
 }
+
 
 -----------------------
 
