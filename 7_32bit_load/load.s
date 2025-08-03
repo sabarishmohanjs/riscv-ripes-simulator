@@ -1,0 +1,3 @@
+#int a = 0xABCDE123
+lui s0 0xABCDE
+addi s0 s0 0x123
