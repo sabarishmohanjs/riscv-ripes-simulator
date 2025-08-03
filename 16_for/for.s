@@ -9,7 +9,7 @@ addi t0,zero,10
 addi s1,zero,0
 for:
     bge s0,t0,exit
-    addi s1,s1,1
+    addi s1,s1,s0
     addi s0,s0,1
     j for
 exit: j exit
