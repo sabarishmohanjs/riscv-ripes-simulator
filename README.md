@@ -21,7 +21,7 @@ Ripes is a user-friendly graphical simulator that allows users to:
 - Experiment with computer architecture concepts interactively
 
 You can try the online version of Ripes here:  
-[https://ripesonline.cs.brown.edu/](https://ripesonline.cs.brown.edu/)
+https://ripes.me/
 
 ---
 
