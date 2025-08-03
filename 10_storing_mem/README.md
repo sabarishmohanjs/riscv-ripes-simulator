@@ -2,7 +2,7 @@
 
 ### High-Level Language (HLL) Code
 
-mem[5] = 42;// chosen an example
+mem[5] = 42;// chosen as an example
 
 ---
 
