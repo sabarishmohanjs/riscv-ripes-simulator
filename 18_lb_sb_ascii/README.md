@@ -2,7 +2,7 @@
 
 ### High-Level Language (HLL) Code
 
-/// high-level code
+// high-level code
 // chararray[10] was declared and initialized earlier
 int i;
 for (i = 0; i < 10; i = i + 1)
