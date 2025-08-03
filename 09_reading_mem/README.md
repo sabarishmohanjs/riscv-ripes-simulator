@@ -2,7 +2,7 @@
 
 ### High-Level Language (HLL) Code
 
-a = mem[2];
+a = mem[2]; //chosen as an example
 
 ---
 
