@@ -20,8 +20,8 @@ The `.s` file in this folder contains the corresponding RISC-V assembly language
 
 This program performs two immediate arithmetic operations on registers.
 
-* `addi s0 s0 4`: This instruction adds the immediate value `4` to the current value of register `s0` and stores the new result back into `s0`.
-* `addi s1 s0 -12`: This instruction takes the updated value of `s0`, adds the immediate value `-12` (which is a subtraction of 12), and stores the final result in register `s1`.
+1. `addi s0 s0 4`: This instruction adds the immediate value `4` to the current value of register `s0` and stores the new result back into `s0`.
+2.  `addi s1 s0 -12`: This instruction takes the updated value of `s0`, adds the immediate value `-12` (which is a subtraction of 12), and stores the final result in register `s1`.
 
 ------------------------------------------------------
 
