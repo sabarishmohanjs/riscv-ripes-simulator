@@ -4,12 +4,13 @@ uint32_t pc=0;
 
 int main()
 {
-    instr_dump();
+    instr_dump(); //dump the instr 
+    //the function is in instr_mem to fetch the instr from the files
     while (pc<MEMORY+4)
     {
         uint32_t instr=fetch();
         DecodedInstruction d= decode(instr);
-        get_operation(d);
+        get_operation(d); //in the main.c code
         pc+=4;
 
     }

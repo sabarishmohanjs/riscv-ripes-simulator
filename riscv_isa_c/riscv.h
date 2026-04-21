@@ -45,8 +45,8 @@ typedef enum{
     BYTE,
     HALFWORD,
     WORD,
-    SIGNED_BYTE,
-    SIGNED_HALFWORD,
+    UNSIGNED_BYTE,
+    UNSIGNED_HALFWORD,
     OP_UNKNOWN
 }operations;
 
@@ -135,7 +135,7 @@ typedef struct
 //memory and register
 // extern - global variable, accessed across the files
 extern uint32_t instr_mem[INSTR_MEM];
-extern uint32_t memory[MEMORY];
+extern uint8_t memory[MEMORY];
 extern int32_t reg[REGISTER];
 extern uint32_t pc;
 

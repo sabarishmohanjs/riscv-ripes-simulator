@@ -1,10 +1,16 @@
 #include "riscv.h"
 
+
+//takes the decoded instruction 
+//perfoms the operation based on the opcode from the instr
+//result stored in the destination register
 void get_operation(DecodedInstruction d)
 {
     switch(d.opcode)
     {
-        case 0x13: //i type
+        //alu(operand 1 , operand 2 , operation to be performed)
+        case 0x13: //i type - register value (operation) imm value
+        //imm- 12 bits 
             switch(d.funct3)
             {
                 case 0x0: //addi
@@ -41,7 +47,7 @@ void get_operation(DecodedInstruction d)
             }
             break;
         
-        case 0x33://r type instr
+        case 0x33://r type instr - reg1 value (operation) reg2 value
             switch(d.funct3)
             {
                 case 0x0:
@@ -85,10 +91,12 @@ void get_operation(DecodedInstruction d)
                 
             }
             break;
-        case 0x03 ://load
+        case 0x03 ://load offset+reg content
+        // i type format
+        //memory_load (address, opcode)
             switch(d.funct3)
             {
-                case 0x00: //lb
+                case 0x00: //lb 
                     reg[d.rd]=memory_load(reg[d.rs1] + d.imm,BYTE);
                 break;
                 case 0x01: //lh
@@ -97,15 +105,17 @@ void get_operation(DecodedInstruction d)
                 case 0x02: //lw
                     reg[d.rd]=memory_load(reg[d.rs1] + d.imm,WORD);
                 break;
-                case 0x04:  //ld missing lbu
-                    reg[d.rd]=memory_load(reg[d.rs1] + d.imm,SIGNED_BYTE); //check signed vs unsigned
+                case 0x04:  //lbu
+                    reg[d.rd]=memory_load(reg[d.rs1] + d.imm,UNSIGNED_BYTE);
                 break;
                 case 0x05: //lhu
-                    reg[d.rd]=memory_load(reg[d.rs1] + d.imm,SIGNED_HALFWORD);
+                    reg[d.rd]=memory_load(reg[d.rs1] + d.imm,UNSIGNED_HALFWORD);
                 break;
             }
             break;
-        case 0x23 ://store type
+        case 0x23 ://store type 
+        //  s type instr format
+        // offset+ content in the memory
             switch(d.funct3)
             {
                 case 0x0: //sb
@@ -168,12 +178,12 @@ void get_operation(DecodedInstruction d)
             reg[d.rd]=alu(pc,d.imm,OP_AUIPC);
         break;
         case 0x6F: //jal
-            reg[d.rd]=pc+4;
-            pc=pc+d.imm;
+            reg[d.rd]=pc+4; //saves return addr
+            pc=pc+d.imm; //jumps to pc relative target
         break;
         case 0x67: //jalr
-            reg[d.rd]=pc+4;
-            pc=(reg[d.rs1]+ d.imm) & ~1;
+            reg[d.rd]=pc+4; //saves return addr
+            pc=(reg[d.rs1]+ d.imm) & ~1; //jumps to regisyre file based addr
         break;
         default:
             break;     

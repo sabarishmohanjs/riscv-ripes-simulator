@@ -1,10 +1,10 @@
 #include "riscv.h"
 
-uint32_t memory[MEMORY];
+uint8_t memory[MEMORY]; //byte addressable memory unit is used 
 
-int32_t memory_load(uint32_t addr, operations op)
+int32_t memory_load(uint32_t addr, operations op) // address and operation
 {
-    if (addr>=MEMORY)
+    if (addr>=MEMORY) //prevents out of bound access
     {
         return 0;
     }
@@ -14,14 +14,14 @@ int32_t memory_load(uint32_t addr, operations op)
         case BYTE:
             return (int8_t)memory[addr];
         case HALFWORD:
-            if (addr + 1 >= MEMORY) return 0;
+            if (addr + 1 >= MEMORY) return 0; //handling the out of bound case
             return (int16_t)(memory[addr] | (memory[addr+1]<<8));
         case WORD:
             if (addr + 3 >= MEMORY) return 0;
             return (int32_t)(memory[addr] | (memory[addr+1]<<8) | (memory[addr+2]<<16) | (memory[addr+3]<<24));
-        case SIGNED_BYTE:
+        case UNSIGNED_BYTE:
             return (uint8_t)memory[addr];
-        case SIGNED_HALFWORD:
+        case UNSIGNED_HALFWORD:
             if (addr + 1 >= MEMORY) return 0;
             return (uint16_t)(memory[addr] | (memory[addr+1]<<8));
         default:
@@ -29,7 +29,8 @@ int32_t memory_load(uint32_t addr, operations op)
     }
 };
 
-void memory_store(uint32_t addr, int32_t data , operations op)
+void memory_store(uint32_t addr, int32_t data , operations op)//no return
+//storing the data using the address andd the type of data to be stored
 {
     if (addr>=MEMORY)
     {
@@ -51,7 +52,7 @@ void memory_store(uint32_t addr, int32_t data , operations op)
             memory[addr]=(uint8_t)data;
             memory[addr+1]=(uint8_t)(data>>8);
             memory[addr+2]=(uint8_t)(data>>16);
-            memory[addr+3]=(uint8_t)(data>>24);
+            memory[addr+3]=(uint8_t)(data>>24);//byte store
             break;
         default:
             return;

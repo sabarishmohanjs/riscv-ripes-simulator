@@ -1,6 +1,7 @@
 #include"riscv.h"
 
-int32_t alu(int32_t op1, int32_t op2, operations op)
+//return type is signed since the values can be negative
+int32_t alu(int32_t op1, int32_t op2, operations op) 
 {
     switch(op)
     {
@@ -11,7 +12,8 @@ int32_t alu(int32_t op1, int32_t op2, operations op)
         case OP_SUB:
             return op1-op2;
         case OP_SLL:
-            return op1<<(op2 & 0x1F); //bit wise or logical and
+            return op1<<(op2 & 0x1F); //bit wise or logical and 
+            //the shifting connstant is 5 bits
         case OP_SLLI:
             return op1<<(op2 & 0x1F);
         case OP_SLT:
@@ -35,16 +37,16 @@ int32_t alu(int32_t op1, int32_t op2, operations op)
         case OP_ANDI:
             return op1 & op2;
         case OP_SRL:
-            return (uint32_t)op1 >> (op2 & 0x1F);
+            return (uint32_t)op1 >> (op2 & 0x1F); //sra fills with 0s
         case OP_SRLI:
             return (uint32_t)op1 >> (op2 & 0x1F);
         case OP_SRA:
-            return op1 >> (op2 & 0x1F);
+            return op1 >> (op2 & 0x1F); //signed bits extends
         case OP_SRAI:
             return op1 >> (op2 & 0x1F);
-        case OP_LUI:
+        case OP_LUI: //stores upper 20 bits and the lower bits are 0s
             return op2;
-        case OP_AUIPC:
+        case OP_AUIPC: //pc relative addressing
             return op1+op2;
         case OP_BEQ:
             return (op1==op2)?1:0;
